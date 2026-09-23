@@ -1,0 +1,34 @@
+{
+  "slug": "milwaukee",
+  "name": "Milwaukee",
+  "status": "active",
+  "featured": false,
+  "categorySlugs": [
+    "north"
+  ],
+  "summary": "Crisp lines with a calm, architectural rhythm.",
+  "description": [
+    "The Milwaukee edition is presented as a carefully composed studio piece with crisp detail and a considered palette.",
+    "Printed and finished in small batches. This fixture content comes from the supplied visual mock and should be replaced with the final BOHUC product copy."
+  ],
+  "price": {
+    "amount": 4500,
+    "currency": "USD",
+    "compareAtAmount": null
+  },
+  "images": [
+    {
+      "src": "images/products/milwaukee/cover.jpg",
+      "alt": "Milwaukee product artwork in white on navy",
+      "width": 720,
+      "height": 720
+    }
+  ],
+  "styles": [
+    "*"
+  ],
+  "seo": {
+    "title": "Milwaukee — BOHUC",
+    "description": "Discover the Milwaukee piece from the BOHUC north collection."
+  }
+}

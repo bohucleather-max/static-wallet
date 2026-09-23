@@ -1,0 +1,64 @@
+---
+import ProductSlider from "./ProductSlider.astro";
+import type { Product } from "../../lib/catalog";
+import { withBase } from "../../lib/urls";
+import ValueIcon from "../ui/ValueIcon.astro";
+
+interface Props { relatedProducts: Product[]; }
+const { relatedProducts } = Astro.props;
+---
+
+<section class="product-promises" aria-label="BOHUC values" data-reveal>
+  <article><ValueIcon name="heart" /><h2>Made by hand</h2><p>Every piece is handled with care and finished in small batches.</p></article>
+  <article><ValueIcon name="trophy" /><h2>Selected materials</h2><p>Material, texture and construction are considered for everyday use.</p></article>
+  <article><ValueIcon name="service" /><h2>Direct service</h2><p>Talk directly with the seller whenever you need product or ordering help.</p></article>
+</section>
+
+<section class="handmade-banner" aria-label="Handmade with love" data-reveal>
+  <video autoplay muted loop playsinline preload="metadata" poster={withBase("images/product-sections/handmade-poster.jpg")}>
+    <source src={withBase("videos/handmade.mp4")} type="video/mp4" />
+  </video>
+  <div class="handmade-banner__shade"></div>
+  <h2>Handmade With Love</h2>
+</section>
+
+<section class="studio-notes" data-reveal aria-labelledby="studio-notes-heading">
+  <div class="studio-notes__heading"><p class="eyebrow">FROM THE STUDIO</p><h2 id="studio-notes-heading">What guides our work</h2></div>
+  <div class="studio-notes__track">
+    <blockquote>“Good leather grows more personal with use. We let the material lead the design.”</blockquote>
+    <blockquote>“Small-batch making gives every cut, edge and stitch the attention it deserves.”</blockquote>
+    <blockquote>“Useful objects should be carried often, cared for, and kept for years.”</blockquote>
+  </div>
+</section>
+
+<section class="product-story" data-reveal>
+  <div class="product-story__wide"><img src={withBase("images/product-sections/craft-wide.jpg")} alt="Crafted objects styled in a warm interior" width="3000" height="2001" loading="lazy" /></div>
+  <div class="product-story__copy">
+    <p class="eyebrow">THE BOHUC APPROACH</p>
+    <h2>Made slowly, made to last.</h2>
+    <p>BOHUC brings together careful handwork, considered construction and distinctive leather. Every detail is developed to feel personal and useful.</p>
+    <a class="link--underline" href={withBase("how-its-made/")}>Discover how it's made</a>
+  </div>
+  <div class="product-story__process"><img src={withBase("images/product-sections/craft-process.jpg")} alt="The studio process behind a handcrafted piece" width="1400" height="933" loading="lazy" /></div>
+  <div class="product-story__detail"><img src={withBase("images/product-sections/craft-detail.jpg")} alt="A finished piece displayed in the studio" width="1600" height="2400" loading="lazy" /></div>
+</section>
+
+<section class="product-cta" data-reveal>
+  <img src={withBase("images/product-sections/studio-banner.jpg")} alt="Maker working carefully in the BOHUC studio" width="1600" height="1067" loading="lazy" />
+  <div class="product-cta__shade"></div>
+  <div><h2>Discover the craft</h2><p>See the materials, tools and care behind every BOHUC piece.</p><a class="button" href={withBase("how-its-made/")}>How it's made</a></div>
+</section>
+
+{relatedProducts.length > 0 && (
+  <section class="related-products" data-reveal>
+    <div class="page-width">
+      <div class="related-products__heading"><p class="eyebrow">CONTINUE EXPLORING</p><h2>You may also like</h2></div>
+      <ProductSlider products={relatedProducts} label="You may also like" />
+    </div>
+  </section>
+)}
+
+<section class="home-newsletter product-contact-strip" data-reveal>
+  <div><h2>Questions about this piece?</h2><p>Talk directly with the seller about materials, availability and ordering.</p></div>
+  <a class="button" href={withBase("contact/")}>Contact us</a>
+</section>

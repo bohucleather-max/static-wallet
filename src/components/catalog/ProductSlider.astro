@@ -1,0 +1,95 @@
+---
+import type { Product } from "../../lib/catalog";
+import ProductCard from "./ProductCard.astro";
+import ChevronIcon from "../ui/ChevronIcon.astro";
+
+interface Props { products: Product[]; label: string; }
+const { products, label } = Astro.props;
+---
+
+<div class="product-slider" data-product-slider>
+  <div class="product-slider__viewport" data-product-slider-viewport tabindex="0" aria-label={label}>
+    <div class="product-slider__track">
+      {products.map((product) => <ProductCard product={product} />)}
+    </div>
+  </div>
+  <button class="product-slider__arrow product-slider__arrow--previous" type="button" data-product-slider-previous aria-label="Previous products"><ChevronIcon direction="previous" /></button>
+  <button class="product-slider__arrow product-slider__arrow--next" type="button" data-product-slider-next aria-label="Next products"><ChevronIcon direction="next" /></button>
+  <div class="product-slider__scrollbar" data-product-slider-scrollbar aria-hidden="true" hidden>
+    <span class="product-slider__scrollbar-thumb" data-product-slider-scrollbar-thumb></span>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-product-slider]").forEach((slider) => {
+    const viewport = slider.querySelector<HTMLElement>("[data-product-slider-viewport]");
+    const previous = slider.querySelector<HTMLButtonElement>("[data-product-slider-previous]");
+    const next = slider.querySelector<HTMLButtonElement>("[data-product-slider-next]");
+    const scrollbar = slider.querySelector<HTMLElement>("[data-product-slider-scrollbar]");
+    const scrollbarThumb = slider.querySelector<HTMLElement>("[data-product-slider-scrollbar-thumb]");
+    if (!viewport || !previous || !next || !scrollbar || !scrollbarThumb) return;
+
+    const update = () => {
+      const end = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+      previous.disabled = viewport.scrollLeft <= 2;
+      next.disabled = viewport.scrollLeft >= end - 2;
+
+      const hasOverflow = end > 2;
+      scrollbar.hidden = !hasOverflow;
+      if (!hasOverflow) return;
+
+      const trackWidth = scrollbar.clientWidth;
+      const thumbWidth = Math.max(60, trackWidth * (viewport.clientWidth / viewport.scrollWidth));
+      const travel = Math.max(0, trackWidth - thumbWidth);
+      const progress = Math.min(1, Math.max(0, viewport.scrollLeft / end));
+      scrollbarThumb.style.width = `${thumbWidth}px`;
+      scrollbarThumb.style.transform = `translateX(${progress * travel}px)`;
+    };
+    const move = (direction: number) => viewport.scrollBy({ left: viewport.clientWidth * direction, behavior: "smooth" });
+
+    let dragging = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+
+    scrollbarThumb.addEventListener("pointerdown", (event) => {
+      dragging = true;
+      dragStartX = event.clientX;
+      dragStartScroll = viewport.scrollLeft;
+      slider.classList.add("is-dragging");
+      scrollbarThumb.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+
+    scrollbarThumb.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      const end = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+      const travel = Math.max(1, scrollbar.clientWidth - scrollbarThumb.offsetWidth);
+      viewport.scrollLeft = dragStartScroll + (event.clientX - dragStartX) * (end / travel);
+    });
+
+    const finishDragging = (event: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      slider.classList.remove("is-dragging");
+      if (scrollbarThumb.hasPointerCapture(event.pointerId)) scrollbarThumb.releasePointerCapture(event.pointerId);
+    };
+
+    scrollbarThumb.addEventListener("pointerup", finishDragging);
+    scrollbarThumb.addEventListener("pointercancel", finishDragging);
+    scrollbar.addEventListener("pointerdown", (event) => {
+      if (event.target === scrollbarThumb) return;
+      const end = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+      const rect = scrollbar.getBoundingClientRect();
+      const travel = Math.max(1, rect.width - scrollbarThumb.offsetWidth);
+      const position = event.clientX - rect.left - scrollbarThumb.offsetWidth / 2;
+      const progress = Math.min(1, Math.max(0, position / travel));
+      viewport.scrollTo({ left: progress * end, behavior: "smooth" });
+    });
+
+    previous.addEventListener("click", () => move(-1));
+    next.addEventListener("click", () => move(1));
+    viewport.addEventListener("scroll", update, { passive: true });
+    new ResizeObserver(update).observe(viewport);
+    update();
+  });
+</script>

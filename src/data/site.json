@@ -1,0 +1,19 @@
+{
+  "brand": {
+    "name": "BOHUC",
+    "tagline": "Objects made slowly, for life."
+  },
+  "pricing": {
+    "currency": "USD",
+    "locale": "en-US"
+  },
+  "announcement": "OBJECTS MADE SLOWLY, FOR LIFE — EXPLORE THE COLLECTION",
+  "contacts": [
+    {
+      "type": "email",
+      "label": "shinleathergoods@gmail.com",
+      "href": "mailto:shinleathergoods@gmail.com"
+    }
+  ],
+  "contactNotice": "Contact SHIN Leather Goods directly for product and ordering information."
+}

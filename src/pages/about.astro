@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/urls";
+---
+
+<BaseLayout title="About — BOHUC" description="From a desk at home to an independent leather workshop—the story behind BOHUC.">
+  <header class="about-hero">
+    <div class="page-width about-hero__grid">
+      <div>
+        <p class="eyebrow">OUR STORY / 2018 — TODAY</p>
+        <h1>One pair of hands.<br />A little more room.</h1>
+      </div>
+      <div class="about-hero__intro">
+        <p>BOHUC began at a small desk with a cutting mat, a borrowed lamp, and a desire to understand how good leather goods are made.</p>
+        <p>The workshop has grown since then. The pace, attention, and belief in making every piece by hand have not.</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="about-story" aria-labelledby="about-story-title">
+    <div class="page-width">
+      <div class="about-story__heading" data-reveal>
+        <p class="eyebrow">FROM THEN TO NOW</p>
+        <h2 id="about-story-title">A workshop built slowly.</h2>
+      </div>
+
+      <div class="about-timeline">
+        <article class="about-chapter" data-reveal>
+          <figure class="about-chapter__image">
+            <div class="about-chapter__frame">
+              <img
+                src={withBase("images/about/before.jpg")}
+                alt="The first BOHUC work desk at home with leather tools, patterns and a cutting mat"
+                width="826"
+                height="1100"
+                loading="eager"
+              />
+            </div>
+            <figcaption>Where the first pieces were made.</figcaption>
+          </figure>
+          <div class="about-chapter__copy">
+            <p class="about-chapter__year">2018</p>
+            <p class="about-chapter__lead">A desk at home, a cutting mat and a borrowed lamp.</p>
+            <p>I finished university that year with no plan to make anything. A worn-out wallet I tried to repair turned into months of reading, testing, and learning how leather behaves.</p>
+            <p>By the end of the year I had gathered a beginner's set of tools—a round knife, an awl, two needles, and a block of wax—and cleared a desk at home to use them on. For the next few years, every piece was made after work and on weekends.</p>
+          </div>
+        </article>
+
+        <article class="about-chapter about-chapter--reverse" data-reveal>
+          <figure class="about-chapter__image">
+            <div class="about-chapter__frame">
+              <img
+                src={withBase("images/about/after.jpg")}
+                alt="The BOHUC leather workshop today with cutting tables, tools and sewing equipment"
+                width="1600"
+                height="1200"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>More room, the same careful process.</figcaption>
+          </figure>
+          <div class="about-chapter__copy">
+            <p class="about-chapter__year">2021</p>
+            <p class="about-chapter__lead">The workshop today—same knife, more room.</p>
+            <p>In 2021 I left my job and gave the work all of my week. The desk at home became a proper workshop, with enough space to cut, stitch, finish, and photograph each piece.</p>
+            <p>Nothing important about the making changed: the same measured pace, the same two-needle stitch, and still one pair of hands responsible from beginning to end. BOHUC is a workshop, not a production line—and it was never meant to become one.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-belief" data-reveal>
+    <div class="page-width about-belief__grid">
+      <p class="eyebrow">WHAT HASN'T CHANGED</p>
+      <blockquote>Make fewer things.<br />Make them well.<br />Let them age with you.</blockquote>
+      <a class="button about-belief__button" href={withBase("how-its-made/")}>See how it's made</a>
+    </div>
+  </section>
+</BaseLayout>

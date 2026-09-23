@@ -1,0 +1,79 @@
+---
+import type { Product } from "../../lib/catalog";
+import { withBase } from "../../lib/urls";
+import ChevronIcon from "../ui/ChevronIcon.astro";
+
+interface Props { images: Product["data"]["images"]; productName: string; }
+const { images, productName } = Astro.props;
+const multiple = images.length > 1;
+---
+
+<div class="product-gallery" data-product-gallery aria-label={`${productName} image gallery`}>
+  <div class="product-gallery__stage">
+    {images.map((image, index) => (
+      <figure class="product-gallery__slide" data-gallery-slide hidden={index !== 0}>
+        <img src={withBase(image.src)} alt={image.alt} width={image.width} height={image.height} loading={index === 0 ? "eager" : "lazy"} />
+      </figure>
+    ))}
+    {multiple && (
+      <>
+        <button class="product-gallery__arrow product-gallery__arrow--previous" type="button" data-gallery-previous aria-label="Previous image"><ChevronIcon direction="previous" /></button>
+        <button class="product-gallery__arrow product-gallery__arrow--next" type="button" data-gallery-next aria-label="Next image"><ChevronIcon direction="next" /></button>
+        <p class="product-gallery__status" aria-live="polite"><span data-gallery-current>1</span> / {images.length}</p>
+      </>
+    )}
+  </div>
+  <div class:list={["product-gallery__thumb-navigation", { "product-gallery__thumb-navigation--single": !multiple }]}>
+    <button class="product-gallery__thumb-arrow" type="button" data-gallery-thumbs-previous aria-label="Scroll gallery thumbnails left" disabled={!multiple}><ChevronIcon direction="previous" /></button>
+    <div class="product-gallery__thumbs" data-gallery-thumbs aria-label="Choose a product image" tabindex="0">
+      {images.map((image, index) => (
+        <button type="button" class:list={{ "is-active": index === 0 }} data-gallery-thumb aria-label={`Preview image ${index + 1}: ${image.alt}`} aria-current={index === 0 ? "true" : undefined}>
+          <img src={withBase(image.src)} alt="" width={image.width} height={image.height} loading="lazy" />
+        </button>
+      ))}
+    </div>
+    <button class="product-gallery__thumb-arrow" type="button" data-gallery-thumbs-next aria-label="Scroll gallery thumbnails right" disabled={!multiple}><ChevronIcon direction="next" /></button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-product-gallery]").forEach((gallery) => {
+      const slides = [...gallery.querySelectorAll<HTMLElement>("[data-gallery-slide]")];
+      const thumbs = [...gallery.querySelectorAll<HTMLButtonElement>("[data-gallery-thumb]")];
+      const thumbsViewport = gallery.querySelector<HTMLElement>("[data-gallery-thumbs]");
+      const thumbsPrevious = gallery.querySelector<HTMLButtonElement>("[data-gallery-thumbs-previous]");
+      const thumbsNext = gallery.querySelector<HTMLButtonElement>("[data-gallery-thumbs-next]");
+      const status = gallery.querySelector<HTMLElement>("[data-gallery-current]");
+      let current = 0;
+      const updateThumbNavigation = () => {
+        if (!thumbsViewport || !thumbsPrevious || !thumbsNext) return;
+        const end = thumbsViewport.scrollWidth - thumbsViewport.clientWidth;
+        thumbsPrevious.disabled = thumbsViewport.scrollLeft <= 2;
+        thumbsNext.disabled = thumbsViewport.scrollLeft >= end - 2;
+      };
+      const show = (next: number) => {
+        current = (next + slides.length) % slides.length;
+        slides.forEach((slide, index) => { slide.hidden = index !== current; });
+        thumbs.forEach((thumb, index) => {
+          const active = index === current;
+          thumb.classList.toggle("is-active", active);
+          if (active) thumb.setAttribute("aria-current", "true");
+          else thumb.removeAttribute("aria-current");
+        });
+        if (status) status.textContent = String(current + 1);
+        thumbs[current]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      };
+      gallery.querySelector("[data-gallery-previous]")?.addEventListener("click", () => show(current - 1));
+      gallery.querySelector("[data-gallery-next]")?.addEventListener("click", () => show(current + 1));
+      thumbs.forEach((thumb, index) => thumb.addEventListener("click", () => show(index)));
+      thumbsPrevious?.addEventListener("click", () => thumbsViewport?.scrollBy({ left: -thumbsViewport.clientWidth * .8, behavior: "smooth" }));
+      thumbsNext?.addEventListener("click", () => thumbsViewport?.scrollBy({ left: thumbsViewport.clientWidth * .8, behavior: "smooth" }));
+      thumbsViewport?.addEventListener("scroll", updateThumbNavigation, { passive: true });
+      if (thumbsViewport) new ResizeObserver(updateThumbNavigation).observe(thumbsViewport);
+      gallery.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") show(current - 1);
+        if (event.key === "ArrowRight") show(current + 1);
+      });
+      updateThumbNavigation();
+  });
+</script>

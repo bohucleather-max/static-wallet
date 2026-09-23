@@ -1,0 +1,17 @@
+{
+  "slug": "south",
+  "name": "South",
+  "eyebrow": "Collection 03",
+  "description": "Warm coral shades and tactile, characterful finishes.",
+  "order": 3,
+  "image": {
+    "src": "images/categories/south/cover.jpg",
+    "alt": "South collection preview",
+    "width": 720,
+    "height": 960
+  },
+  "seo": {
+    "title": "South Collection — BOHUC",
+    "description": "Explore the BOHUC South collection."
+  }
+}

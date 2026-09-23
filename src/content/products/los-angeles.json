@@ -1,0 +1,34 @@
+{
+  "slug": "los-angeles",
+  "name": "Los Angeles",
+  "status": "active",
+  "featured": true,
+  "categorySlugs": [
+    "west"
+  ],
+  "summary": "A sprawling urban pattern in timeless charcoal.",
+  "description": [
+    "The Los Angeles edition is presented as a carefully composed studio piece with crisp detail and a considered palette.",
+    "Printed and finished in small batches. This fixture content comes from the supplied visual mock and should be replaced with the final BOHUC product copy."
+  ],
+  "price": {
+    "amount": 4800,
+    "currency": "USD",
+    "compareAtAmount": null
+  },
+  "images": [
+    {
+      "src": "images/products/los-angeles/cover.jpg",
+      "alt": "Los Angeles product artwork in white on charcoal",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "styles": [
+    "*"
+  ],
+  "seo": {
+    "title": "Los Angeles — BOHUC",
+    "description": "Discover the Los Angeles piece from the BOHUC west collection."
+  }
+}

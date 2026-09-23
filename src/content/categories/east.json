@@ -1,0 +1,17 @@
+{
+  "slug": "east",
+  "name": "East",
+  "eyebrow": "Collection 02",
+  "description": "Soft neutrals and precise lines for everyday spaces.",
+  "order": 2,
+  "image": {
+    "src": "images/categories/east/cover.jpg",
+    "alt": "East collection preview",
+    "width": 720,
+    "height": 720
+  },
+  "seo": {
+    "title": "East Collection — BOHUC",
+    "description": "Explore the BOHUC East collection."
+  }
+}

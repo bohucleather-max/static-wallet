@@ -1,0 +1,34 @@
+{
+  "slug": "miami",
+  "name": "Miami",
+  "status": "active",
+  "featured": true,
+  "categorySlugs": [
+    "south"
+  ],
+  "summary": "Coastal energy expressed through deep blue.",
+  "description": [
+    "The Miami edition is presented as a carefully composed studio piece with crisp detail and a considered palette.",
+    "Printed and finished in small batches. This fixture content comes from the supplied visual mock and should be replaced with the final BOHUC product copy."
+  ],
+  "price": {
+    "amount": 4800,
+    "currency": "USD",
+    "compareAtAmount": null
+  },
+  "images": [
+    {
+      "src": "images/products/miami/cover.jpg",
+      "alt": "Miami product artwork in white on navy",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "styles": [
+    "*"
+  ],
+  "seo": {
+    "title": "Miami — BOHUC",
+    "description": "Discover the Miami piece from the BOHUC south collection."
+  }
+}

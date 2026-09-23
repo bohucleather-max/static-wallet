@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroSlider from "../components/home/HeroSlider.astro";
+import ProductGrid from "../components/catalog/ProductGrid.astro";
+import ValueIcon from "../components/ui/ValueIcon.astro";
+import { getActiveProducts, getCategories } from "../lib/catalog";
+import { withBase } from "../lib/urls";
+
+const [products, categories] = await Promise.all([getActiveProducts(), getCategories()]);
+const featured = products.filter((product) => product.data.featured).slice(0, 4);
+const collectionTiles = categories.slice(0, 3);
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "BOHUC",
+  url: new URL(withBase(), Astro.site).href,
+};
+---
+
+<BaseLayout structuredData={organization} image={withBase("images/pages/home-hero.jpg")}>
+  <HeroSlider />
+
+  <section class="home-statement" data-reveal>
+    <p>Each piece is an individual work of art that speaks of your neighborhood's unique character – perfect for adding a touch of personality to any space.</p>
+  </section>
+
+  <section class="home-products" data-reveal>
+    <div class="home-tabs" aria-label="Featured product groups">
+      <span class="home-tabs__active">Bestsellers</span>
+      <span>Latest releases</span>
+      <span class="home-tabs__sale">On sale</span>
+    </div>
+    <div class="page-width home-products__grid"><ProductGrid products={featured} /></div>
+    <a class="home-products__more link--underline" href={withBase("collections/")}>Shop all products</a>
+  </section>
+
+  <section class="sale-wrap" data-reveal>
+    <div class="sale-banner">
+      <img src={withBase("images/pages/sale-banner.gif")} alt="Framed city artworks displayed in a warm living room" width="1400" height="933" loading="lazy" />
+      <div class="sale-banner__content">
+        <h2>Up to 40% off</h2>
+        <p>Discover selected pieces from the BOHUC collection.</p>
+        <a class="button" href={withBase("collections/")}>Shop the edit</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="values-section" data-reveal>
+    <div class="page-width values-grid">
+      <article><ValueIcon name="heart" /><h3>Printed with love</h3><p>Every piece receives a high quality finish, with crisp details and clear designs.</p></article>
+      <article><ValueIcon name="diamond" /><h3>Made to last</h3><p>Made with carefully selected materials designed to stay with you for years.</p></article>
+      <article><ValueIcon name="nature" /><h3>Kind to nature</h3><p>We choose materials and processes with a lighter impact on the environment.</p></article>
+      <article><ValueIcon name="shipping" /><h3>Worldwide shipping</h3><p>We'll have your order with you in no time through reliable worldwide delivery.</p></article>
+    </div>
+  </section>
+
+  <section class="editorial-stack">
+    <article class="home-editorial" data-reveal>
+      <div class="home-editorial__image"><img src={withBase("images/pages/favourite-place.jpg")} alt="A blue Nashville artwork in a warm interior" width="2000" height="3000" loading="lazy" /></div>
+      <div class="home-editorial__copy"><h2>Favourite places</h2><p>Our pieces blend modern design with carefully sourced materials, bringing a personal story into your space.</p><a class="link--underline" href={withBase("collections/")}>Bestsellers</a></div>
+    </article>
+    <article class="home-editorial home-editorial--reverse" data-reveal>
+      <div class="home-editorial__image"><img src={withBase("images/pages/every-home.jpg")} alt="Framed artwork styled in a bright home" width="2894" height="1934" loading="lazy" /></div>
+      <div class="home-editorial__copy"><h2>For every home</h2><p>Explore colors and styles made to complement your room, your mood, and the things you already love.</p><a class="link--underline" href={withBase("collections/")}>See more</a></div>
+    </article>
+  </section>
+
+  <section class="studio-section" data-reveal>
+    <div class="page-width studio-grid">
+      <div class="studio-copy"><h2>Come visit the studio</h2><p>BOHUC is an online-first studio.<br />Contact the seller directly to ask about a piece<br />or place an order.</p><a class="link--underline" href={withBase("contact/")}>Contact us</a></div>
+      <div class="studio-map"><img src={withBase("images/pages/studio-map.png")} alt="Illustrated studio map" width="600" height="390" loading="lazy" /><a class="button" href={withBase("contact/")}>Get directions</a></div>
+    </div>
+  </section>
+
+  <section class="home-collections" data-reveal>
+    <div class="home-collections__track page-width">
+      {collectionTiles.map((category) => (
+        <a class="home-collection" href={withBase(`collections/${category.data.slug}/`)}>
+          <img src={withBase(category.data.image.src)} alt={category.data.image.alt} width={category.data.image.width} height={category.data.image.height} loading="lazy" />
+          <span><strong>{category.data.name}</strong><small>View collection</small></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="home-newsletter" data-reveal>
+    <div><h2>Stay close to BOHUC</h2><p>For new releases and studio updates, talk directly with the seller.</p></div>
+    <a class="button" href={withBase("contact/")}>Contact us</a>
+  </section>
+</BaseLayout>

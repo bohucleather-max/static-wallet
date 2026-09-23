@@ -1,0 +1,34 @@
+{
+  "slug": "san-antonio",
+  "name": "San Antonio",
+  "status": "active",
+  "featured": false,
+  "categorySlugs": [
+    "south"
+  ],
+  "summary": "A warm-toned study with handcrafted character.",
+  "description": [
+    "The San Antonio edition is presented as a carefully composed studio piece with crisp detail and a considered palette.",
+    "Printed and finished in small batches. This fixture content comes from the supplied visual mock and should be replaced with the final BOHUC product copy."
+  ],
+  "price": {
+    "amount": 4800,
+    "currency": "USD",
+    "compareAtAmount": null
+  },
+  "images": [
+    {
+      "src": "images/products/san-antonio/cover.jpg",
+      "alt": "San Antonio product artwork in cream on coral",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "styles": [
+    "*"
+  ],
+  "seo": {
+    "title": "San Antonio — BOHUC",
+    "description": "Discover the San Antonio piece from the BOHUC south collection."
+  }
+}

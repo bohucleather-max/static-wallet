@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactLinks from "../components/ui/ContactLinks.astro";
+---
+
+<BaseLayout title="Contact — BOHUC" description="Contact BOHUC directly about products and orders.">
+  <header class="content-hero">
+    <div class="page-width">
+      <p class="eyebrow">CONTACT</p>
+      <h1>Let's talk.</h1>
+      <p>Questions about a piece, material, delivery, or ordering? Choose the channel that works best for you.</p>
+    </div>
+  </header>
+  <section class="section section--paper">
+    <div class="page-width contact-panel">
+      <div>
+        <p class="eyebrow">DIRECT TO THE SELLER</p>
+        <h2>Start a conversation.</h2>
+        <p>No account or checkout is required. Contact links open the seller's email or messaging channel directly.</p>
+      </div>
+      <ContactLinks />
+    </div>
+  </section>
+</BaseLayout>

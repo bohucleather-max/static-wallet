@@ -1,0 +1,34 @@
+{
+  "slug": "brooklyn",
+  "name": "Brooklyn",
+  "status": "active",
+  "featured": true,
+  "categorySlugs": [
+    "east"
+  ],
+  "summary": "Soft blue geometry with a clean gallery finish.",
+  "description": [
+    "The Brooklyn edition is presented as a carefully composed studio piece with crisp detail and a considered palette.",
+    "Printed and finished in small batches. This fixture content comes from the supplied visual mock and should be replaced with the final BOHUC product copy."
+  ],
+  "price": {
+    "amount": 4500,
+    "currency": "USD",
+    "compareAtAmount": null
+  },
+  "images": [
+    {
+      "src": "images/products/brooklyn/cover.jpg",
+      "alt": "Brooklyn product artwork in grey blue on white",
+      "width": 720,
+      "height": 720
+    }
+  ],
+  "styles": [
+    "*"
+  ],
+  "seo": {
+    "title": "Brooklyn — BOHUC",
+    "description": "Discover the Brooklyn piece from the BOHUC east collection."
+  }
+}

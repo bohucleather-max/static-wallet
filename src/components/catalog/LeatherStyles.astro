@@ -1,0 +1,29 @@
+---
+import type { Leather } from "../../lib/catalog";
+import { withBase } from "../../lib/urls";
+
+interface Props { leathers: Leather[]; }
+const { leathers } = Astro.props;
+const groups = ["Outer Leather", "Lining Leather"].map((name) => ({ name, items: leathers.filter((leather) => leather.group === name) })).filter((group) => group.items.length > 0);
+---
+
+<div class="leather-styles" aria-label="Available leather styles">
+  <div class="leather-styles__heading">
+    <h2 id="style-heading">Style</h2>
+    <p>{leathers.length} leather options</p>
+  </div>
+  {groups.map((group) => (
+    <div class="leather-styles__group">
+      <h3>{group.name}</h3>
+      <div class="leather-styles__grid" role="list" aria-label={`${group.name} options`}>
+        {group.items.map((leather) => (
+          <figure class="leather-style" role="listitem">
+            <img src={withBase(leather.image.src)} alt={leather.image.alt} width={leather.image.width} height={leather.image.height} loading="lazy" />
+            <figcaption><strong>{leather.name}</strong></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  ))}
+  <p class="leather-styles__note">Leather samples are shown as material references and are not interactive options.</p>
+</div>

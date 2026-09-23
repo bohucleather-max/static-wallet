@@ -1,0 +1,17 @@
+{
+  "slug": "north",
+  "name": "North",
+  "eyebrow": "Collection 01",
+  "description": "Quiet geometry, deep blue tones, and considered details.",
+  "order": 1,
+  "image": {
+    "src": "images/categories/north/cover.jpg",
+    "alt": "North collection preview",
+    "width": 720,
+    "height": 720
+  },
+  "seo": {
+    "title": "North Collection — BOHUC",
+    "description": "Explore the BOHUC North collection."
+  }
+}

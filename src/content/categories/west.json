@@ -1,0 +1,17 @@
+{
+  "slug": "west",
+  "name": "West",
+  "eyebrow": "Collection 04",
+  "description": "Bold contrast and relaxed forms inspired by the coast.",
+  "order": 4,
+  "image": {
+    "src": "images/categories/west/cover.jpg",
+    "alt": "West collection preview",
+    "width": 720,
+    "height": 960
+  },
+  "seo": {
+    "title": "West Collection — BOHUC",
+    "description": "Explore the BOHUC West collection."
+  }
+}

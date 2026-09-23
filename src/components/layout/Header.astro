@@ -1,0 +1,58 @@
+---
+import { withBase } from "../../lib/urls";
+
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => currentPath === withBase(path) || currentPath.startsWith(withBase(path));
+const collections = [
+  { label: "ALL PRODUCT", href: "collections/" },
+  { label: "NORTH", href: "collections/north/" },
+  { label: "EAST", href: "collections/east/" },
+  { label: "SOUTH", href: "collections/south/" },
+  { label: "WEST", href: "collections/west/" },
+];
+---
+
+<header class:list={["site-header", { "site-header--overlay": currentPath === withBase() }]}>
+  <div class="site-header__inner page-width">
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <ul class="nav-list">
+        <li><a class:list={{ active: isActive("") && currentPath === withBase() }} href={withBase()}>HOME</a></li>
+        <li class="nav-list__collection">
+          <a class:list={{ active: isActive("collections/") }} href={withBase("collections/")}>COLLECTION</a>
+          <ul class="collection-menu">
+            {collections.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
+          </ul>
+        </li>
+        <li><a class:list={{ active: isActive("how-its-made/") }} href={withBase("how-its-made/")}>HOW IT'S MADE</a></li>
+        <li><a class:list={{ active: isActive("about/") }} href={withBase("about/")}>ABOUT</a></li>
+        <li><a class:list={{ active: isActive("how-to-order/") }} href={withBase("how-to-order/")}>HOW TO ORDER</a></li>
+        <li><a class:list={{ active: isActive("contact/") }} href={withBase("contact/")}>CONTACT</a></li>
+      </ul>
+    </nav>
+
+    <a class="wordmark site-header__wordmark" href={withBase()} aria-label="BOHUC home">BOHUC</a>
+
+    <div class="site-header__spacer" aria-hidden="true"></div>
+
+    <details class="mobile-menu">
+      <summary aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </summary>
+      <nav aria-label="Mobile navigation">
+        <ul class="nav-list">
+          <li><a class:list={{ active: isActive("") && currentPath === withBase() }} href={withBase()}>HOME</a></li>
+          <li class="nav-list__collection">
+            <a class:list={{ active: isActive("collections/") }} href={withBase("collections/")}>COLLECTION</a>
+            <ul class="collection-menu">
+              {collections.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
+            </ul>
+          </li>
+          <li><a class:list={{ active: isActive("how-its-made/") }} href={withBase("how-its-made/")}>HOW IT'S MADE</a></li>
+          <li><a class:list={{ active: isActive("about/") }} href={withBase("about/")}>ABOUT</a></li>
+          <li><a class:list={{ active: isActive("how-to-order/") }} href={withBase("how-to-order/")}>HOW TO ORDER</a></li>
+          <li><a class:list={{ active: isActive("contact/") }} href={withBase("contact/")}>CONTACT</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

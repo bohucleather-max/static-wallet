@@ -1,0 +1,82 @@
+{
+  "slug": "pittsburgh",
+  "name": "Pittsburgh",
+  "status": "active",
+  "featured": false,
+  "categorySlugs": [
+    "north"
+  ],
+  "summary": "A bold composition grounded in charcoal.",
+  "description": [
+    "The Pittsburgh edition is presented as a carefully composed studio piece with crisp detail and a considered palette.",
+    "Printed and finished in small batches. This fixture content comes from the supplied visual mock and should be replaced with the final BOHUC product copy."
+  ],
+  "price": {
+    "amount": 4800,
+    "currency": "USD",
+    "compareAtAmount": null
+  },
+  "images": [
+    {
+      "src": "images/products/pittsburgh/cover.jpg",
+      "alt": "Pittsburgh product artwork in white on charcoal",
+      "width": 720,
+      "height": 960
+    },
+    {
+      "src": "images/products/pittsburgh/lifestyle.jpg",
+      "alt": "Cream and coral Pittsburgh artwork displayed above a leather chair",
+      "width": 1200,
+      "height": 1200
+    },
+    {
+      "src": "images/products/pittsburgh/coral-magnets.jpg",
+      "alt": "Cream and coral Pittsburgh artwork displayed with magnetic hangers",
+      "width": 1200,
+      "height": 1200
+    },
+    {
+      "src": "images/products/pittsburgh/coral-oak-frame.jpg",
+      "alt": "Cream and coral Pittsburgh artwork presented in an oak frame",
+      "width": 1200,
+      "height": 1200
+    },
+    {
+      "src": "images/products/pittsburgh/coral-oak-hanger.jpg",
+      "alt": "Cream and coral Pittsburgh artwork displayed with an oak hanger",
+      "width": 1200,
+      "height": 1200
+    },
+    {
+      "src": "images/products/pittsburgh/coral-walnut-frame.jpg",
+      "alt": "Cream and coral Pittsburgh artwork presented in a walnut frame",
+      "width": 1200,
+      "height": 1200
+    },
+    {
+      "src": "images/products/pittsburgh/coral-walnut-hanger.jpg",
+      "alt": "Cream and coral Pittsburgh artwork displayed with a walnut hanger",
+      "width": 1200,
+      "height": 1200
+    },
+    {
+      "src": "images/products/pittsburgh/coral-print.jpg",
+      "alt": "Cream and coral Pittsburgh artwork shown as a print",
+      "width": 1200,
+      "height": 1200
+    },
+    {
+      "src": "images/products/pittsburgh/coral-white-frame.jpg",
+      "alt": "Cream and coral Pittsburgh artwork presented in a white frame",
+      "width": 1200,
+      "height": 1200
+    }
+  ],
+  "styles": [
+    "*"
+  ],
+  "seo": {
+    "title": "Pittsburgh — BOHUC",
+    "description": "Discover the Pittsburgh piece from the BOHUC north collection."
+  }
+}

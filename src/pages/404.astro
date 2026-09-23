@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/urls";
+---
+
+<BaseLayout title="Page Not Found — BOHUC" description="The requested BOHUC page could not be found.">
+  <section class="content-hero">
+    <div class="page-width">
+      <p class="eyebrow">404 / NOT FOUND</p>
+      <h1>This page has wandered.</h1>
+      <p>Return home or continue exploring the collection.</p>
+      <p><a class="button" href={withBase()}>Return home</a></p>
+    </div>
+  </section>
+</BaseLayout>

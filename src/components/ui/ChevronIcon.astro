@@ -1,0 +1,12 @@
+---
+interface Props {
+  direction: "previous" | "next";
+}
+
+const { direction } = Astro.props;
+const path = direction === "previous" ? "M12 2 2 12 12 22" : "M2 2 12 12 2 22";
+---
+
+<svg class="navigation-chevron" viewBox="0 0 14 24" aria-hidden="true" focusable="false">
+  <path d={path}></path>
+</svg>

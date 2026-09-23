@@ -1,0 +1,19 @@
+---
+import type { Product } from "../../lib/catalog";
+import ProductCard from "./ProductCard.astro";
+
+interface Props { products: Product[]; }
+const { products } = Astro.props;
+---
+
+{products.length > 0 ? (
+  <div class="product-grid">
+    {products.map((product) => <ProductCard product={product} />)}
+  </div>
+) : (
+  <div class="empty-state">
+    <p class="eyebrow">COLLECTION UPDATE</p>
+    <h2>New pieces are on the way.</h2>
+    <p>This collection is currently being prepared.</p>
+  </div>
+)}

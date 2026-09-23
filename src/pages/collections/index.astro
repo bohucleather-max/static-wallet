@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CollectionNav from "../../components/catalog/CollectionNav.astro";
+import ProductGrid from "../../components/catalog/ProductGrid.astro";
+import { getActiveProducts } from "../../lib/catalog";
+
+const products = await getActiveProducts();
+---
+
+<BaseLayout title="All Product — BOHUC" description="Browse every piece in the BOHUC catalog.">
+  <header class="page-intro page-intro--color">
+    <div class="page-width">
+      <p class="eyebrow">COLLECTION</p>
+      <h1>All Product</h1>
+      <p>Explore the complete catalog, organized in four distinct directions.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="page-width">
+      <CollectionNav current="all" />
+      <ProductGrid products={products} />
+    </div>
+  </section>
+</BaseLayout>

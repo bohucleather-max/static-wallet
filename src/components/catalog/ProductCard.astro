@@ -1,0 +1,19 @@
+---
+import type { Product } from "../../lib/catalog";
+import { formatPrice } from "../../lib/format";
+import { withBase } from "../../lib/urls";
+
+interface Props { product: Product; }
+const { product } = Astro.props;
+const image = product.data.images[0];
+---
+
+<article class="product-card">
+  <a class="product-card__image" href={withBase(`products/${product.data.slug}/`)} aria-label={`View ${product.data.name}`}>
+    <img src={withBase(image.src)} alt={image.alt} width={image.width} height={image.height} loading="lazy" />
+  </a>
+  <div class="product-card__details">
+    <h3><a href={withBase(`products/${product.data.slug}/`)}>{product.data.name}</a></h3>
+    <p>{formatPrice(product.data.price.amount)}</p>
+  </div>
+</article>

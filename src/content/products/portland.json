@@ -1,0 +1,34 @@
+{
+  "slug": "portland",
+  "name": "Portland",
+  "status": "active",
+  "featured": true,
+  "categorySlugs": [
+    "west"
+  ],
+  "summary": "A relaxed composition in warm, optimistic color.",
+  "description": [
+    "The Portland edition is presented as a carefully composed studio piece with crisp detail and a considered palette.",
+    "Printed and finished in small batches. This fixture content comes from the supplied visual mock and should be replaced with the final BOHUC product copy."
+  ],
+  "price": {
+    "amount": 4800,
+    "currency": "USD",
+    "compareAtAmount": null
+  },
+  "images": [
+    {
+      "src": "images/products/portland/cover.jpg",
+      "alt": "Portland product artwork in cream on coral",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "styles": [
+    "*"
+  ],
+  "seo": {
+    "title": "Portland — BOHUC",
+    "description": "Discover the Portland piece from the BOHUC west collection."
+  }
+}

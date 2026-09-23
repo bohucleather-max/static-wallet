@@ -1,0 +1,128 @@
+---
+import { withBase } from "../../lib/urls";
+
+const slides = [
+  {
+    desktop: "images/pages/home-hero.jpg",
+    mobile: "images/pages/home-hero-mobile.jpg",
+    width: 2400,
+    height: 1600,
+    alt: "Framed city artworks displayed above a living room sofa",
+    title: "Honour your community with art.",
+    align: "right",
+    primary: { label: "Shop all", href: "collections/" },
+    secondary: { label: "How to order", href: "how-to-order/" },
+  },
+  {
+    desktop: "images/pages/hero-community.jpg",
+    width: 2380,
+    height: 1600,
+    alt: "A colorful city artwork styled above a fabric sofa",
+    title: "Celebrate the places that you love.",
+    align: "right",
+    primary: { label: "View collection", href: "collections/" },
+    secondary: { label: "Contact us", href: "contact/" },
+  },
+  {
+    desktop: "images/pages/hero-favourite-town.jpg",
+    mobile: "images/pages/hero-favourite-town-mobile.jpg",
+    width: 2400,
+    height: 1600,
+    alt: "City artwork displayed in a bright modern interior",
+    title: "Put your favorite town on the wall.",
+    align: "left",
+    primary: { label: "Shop all", href: "collections/" },
+    secondary: { label: "How it's made", href: "how-its-made/" },
+  },
+];
+---
+
+<section class="home-hero" data-hero-slider aria-roledescription="carousel" aria-label="BOHUC highlights">
+  <div class="home-hero__slides" aria-live="off">
+    {slides.map((slide, index) => (
+      <article
+        class:list={["home-hero__slide", `home-hero__slide--${slide.align}`, { "is-active": index === 0 }]}
+        data-hero-slide
+        aria-hidden={index === 0 ? "false" : "true"}
+      >
+        <picture class="home-hero__picture">
+          {slide.mobile && <source media="(max-width: 767px)" srcset={withBase(slide.mobile)} />}
+          <img
+            src={withBase(slide.desktop)}
+            alt={slide.alt}
+            width={slide.width}
+            height={slide.height}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchpriority={index === 0 ? "high" : "auto"}
+          />
+        </picture>
+        <div class="home-hero__shade"></div>
+        <div class="home-hero__content">
+          {index === 0 ? <h1 class="home-hero__title">{slide.title}</h1> : <h2 class="home-hero__title">{slide.title}</h2>}
+          <div class="home-hero__actions">
+            <a class="button" href={withBase(slide.primary.href)}>{slide.primary.label}</a>
+            <a class="button button--outline" href={withBase(slide.secondary.href)}>{slide.secondary.label}</a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+  <div class="home-hero__dots" role="group" aria-label="Choose slide">
+    {slides.map((slide, index) => (
+      <button
+        type="button"
+        class:list={{ "is-active": index === 0 }}
+        data-hero-dot
+        aria-label={`Show slide ${index + 1}: ${slide.title}`}
+        aria-current={index === 0 ? "true" : undefined}
+      ></button>
+    ))}
+  </div>
+</section>
+
+<script>
+  const sliders = document.querySelectorAll<HTMLElement>("[data-hero-slider]");
+
+  sliders.forEach((slider) => {
+    const slides = [...slider.querySelectorAll<HTMLElement>("[data-hero-slide]")];
+    const dots = [...slider.querySelectorAll<HTMLButtonElement>("[data-hero-dot]")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let current = 0;
+    let timer: number | undefined;
+
+    const show = (next: number) => {
+      current = (next + slides.length) % slides.length;
+      slides.forEach((slide, index) => {
+        const active = index === current;
+        slide.classList.toggle("is-active", active);
+        slide.setAttribute("aria-hidden", String(!active));
+        if (active) slide.removeAttribute("inert");
+        else slide.setAttribute("inert", "");
+      });
+      dots.forEach((dot, index) => {
+        const active = index === current;
+        dot.classList.toggle("is-active", active);
+        if (active) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+    };
+
+    const stop = () => window.clearInterval(timer);
+    const start = () => {
+      stop();
+      if (!reducedMotion.matches) timer = window.setInterval(() => show(current + 1), 9000);
+    };
+
+    dots.forEach((dot, index) => dot.addEventListener("click", () => { show(index); start(); }));
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", start);
+    slider.addEventListener("focusin", stop);
+    slider.addEventListener("focusout", (event) => {
+      if (!slider.contains(event.relatedTarget as Node | null)) start();
+    });
+    document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
+    reducedMotion.addEventListener("change", start);
+    show(0);
+    start();
+  });
+</script>

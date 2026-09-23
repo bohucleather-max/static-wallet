@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/urls";
+---
+
+<BaseLayout title="How It's Made — BOHUC" description="Follow the material, cutting, stitching and finishing process behind every BOHUC leather piece.">
+  <header class="making-hero">
+    <div class="making-hero__copy">
+      <p class="eyebrow">01 / MATERIAL</p>
+      <h1>Made slowly.<br />Made to last.</h1>
+      <p>Every BOHUC piece passes through one pair of hands—from the first inspection of the hide to the final mark.</p>
+    </div>
+    <figure class="making-hero__image">
+      <img
+        src={withBase("images/making/step-1.jpg")}
+        alt="A selection of colorful textured leather hides in the BOHUC workshop"
+        width="1600"
+        height="1067"
+        loading="eager"
+      />
+    </figure>
+  </header>
+
+  <section class="making-intro" aria-labelledby="making-process-title">
+    <div class="page-width making-intro__grid" data-reveal>
+      <p class="eyebrow">SIX CONSIDERED STAGES</p>
+      <h2 id="making-process-title">The process is quiet.<br />The details speak.</h2>
+      <p>Leather rewards patience. Rather than rush it through a production line, we work in measured stages so the grain, structure, and edges receive the attention they need.</p>
+    </div>
+  </section>
+
+  <section class="making-process">
+    <div class="page-width">
+      <article class="making-stage" data-reveal>
+        <figure class="making-stage__image">
+          <img src={withBase("images/making/step-2.jpg")} alt="Blue leather components cut and arranged on a gridded cutting mat" width="1600" height="1059" loading="lazy" />
+        </figure>
+        <div class="making-stage__copy">
+          <p class="making-stage__number">02 / PREPARE</p>
+          <h3>Cut with intention.</h3>
+          <p>Each component is positioned with the direction and character of the grain in mind, then cut individually for an accurate fit.</p>
+          <small>Pattern placement · Hand cutting · Grain selection</small>
+        </div>
+      </article>
+
+      <div class="making-details">
+        <article class="making-detail" data-reveal>
+          <figure><img src={withBase("images/making/step-3.jpg")} alt="A leather edge being carefully thinned by hand with a skiving knife" width="1600" height="860" loading="lazy" /></figure>
+          <div>
+            <p class="making-stage__number">03 / REFINE</p>
+            <h3>Remove only what is needed.</h3>
+            <p>Edges are skived to reduce bulk where layers meet. This small adjustment keeps the finished piece slim and comfortable.</p>
+          </div>
+        </article>
+        <article class="making-detail" data-reveal>
+          <figure><img src={withBase("images/making/step-4.jpg")} alt="A leather wallet held in a stitching pony while being sewn by hand" width="1600" height="1059" loading="lazy" /></figure>
+          <div>
+            <p class="making-stage__number">04 / STITCH</p>
+            <h3>Two needles, one strong line.</h3>
+            <p>Saddle stitching locks every thread through the leather. It takes longer, but creates a seam made for years of use.</p>
+          </div>
+        </article>
+      </div>
+
+      <article class="making-stage making-stage--reverse" data-reveal>
+        <figure class="making-stage__image">
+          <img src={withBase("images/making/step-5.jpg")} alt="The layered edge of a brown leather piece being finished with a hand tool" width="1600" height="871" loading="lazy" />
+        </figure>
+        <div class="making-stage__copy">
+          <p class="making-stage__number">05 / FINISH</p>
+          <h3>Build a smooth edge.</h3>
+          <p>The exposed layers are levelled, shaped, and finished by hand. Repeated passes create an edge that feels as considered as the face of the leather.</p>
+          <small>Shape · Smooth · Seal</small>
+        </div>
+      </article>
+
+      <article class="making-signature" data-reveal>
+        <figure>
+          <img src={withBase("images/making/step-6.jpg")} alt="A brass press applying the BOHUC mark to a leather component" width="1600" height="924" loading="lazy" />
+        </figure>
+        <div class="making-signature__copy">
+          <div>
+            <p class="making-stage__number">06 / SIGN</p>
+            <h3>The final mark.</h3>
+          </div>
+          <p>Only after the construction and finish meet the standard does the piece receive its mark. It is checked once more, then prepared for its new owner.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="making-end" data-reveal>
+    <div class="page-width making-end__grid">
+      <p class="eyebrow">MADE IN SMALL BATCHES</p>
+      <h2>No shortcuts.<br />No production line.</h2>
+      <a class="button" href={withBase("collections/")}>Explore the collection</a>
+    </div>
+  </section>
+</BaseLayout>

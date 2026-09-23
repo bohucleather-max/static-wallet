@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LeatherStyles from "../../components/catalog/LeatherStyles.astro";
+import ProductGallery from "../../components/catalog/ProductGallery.astro";
+import ProductEditorial from "../../components/catalog/ProductEditorial.astro";
+import ProductSlider from "../../components/catalog/ProductSlider.astro";
+import { formatPrice } from "../../lib/format";
+import { getActiveProducts, getProductLeathers, type Product } from "../../lib/catalog";
+import { withBase } from "../../lib/urls";
+
+interface Props { product: Product; }
+
+export async function getStaticPaths() {
+  const products = await getActiveProducts();
+  return products.map((product) => ({ params: { slug: product.data.slug }, props: { product } }));
+}
+
+const { product } = Astro.props;
+const image = product.data.images[0];
+const productLeathers = getProductLeathers(product.data.styles);
+const otherProducts = (await getActiveProducts()).filter((item) => item.data.slug !== product.data.slug);
+const relatedProducts = [
+  ...otherProducts.filter((item) => item.data.categorySlugs.some((slug) => product.data.categorySlugs.includes(slug))),
+  ...otherProducts.filter((item) => !item.data.categorySlugs.some((slug) => product.data.categorySlugs.includes(slug))),
+].slice(0, 8);
+const productUrl = new URL(withBase(`products/${product.data.slug}/`), Astro.site).href;
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.data.name,
+    description: product.data.seo.description,
+    image: product.data.images.map((item) => new URL(withBase(item.src), Astro.site).href),
+    offers: {
+      "@type": "Offer",
+      price: (product.data.price.amount / 100).toFixed(2),
+      priceCurrency: "USD",
+      url: productUrl,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: new URL(withBase(), Astro.site).href },
+      { "@type": "ListItem", position: 2, name: "All Product", item: new URL(withBase("collections/"), Astro.site).href },
+      { "@type": "ListItem", position: 3, name: product.data.name, item: productUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout title={product.data.seo.title} description={product.data.seo.description} image={withBase(image.src)} structuredData={structuredData}>
+  <article class="product-detail">
+    <div class="product-detail__media">
+      <ProductGallery images={product.data.images} productName={product.data.name} />
+    </div>
+    <div class="product-detail__info">
+      <p class="eyebrow">BOHUC / {product.data.categorySlugs[0]}</p>
+      <h1>{product.data.name}</h1>
+      <p class="product-detail__price">{formatPrice(product.data.price.amount)}</p>
+      <p class="product-detail__summary">{product.data.summary}</p>
+
+      <div class="static-detail">
+        <section aria-labelledby="product-detail-heading">
+          <h2 id="product-detail-heading">Product Detail</h2>
+          {product.data.description.map((paragraph) => <p>{paragraph}</p>)}
+        </section>
+        <section aria-labelledby="style-heading"><LeatherStyles leathers={productLeathers} /></section>
+      </div>
+      {relatedProducts.length > 0 && (
+        <section class="product-complementary" aria-labelledby="build-collection-heading">
+          <h2 id="build-collection-heading">Build your collection</h2>
+          <ProductSlider products={relatedProducts.slice(0, 4)} label="Build your collection" />
+        </section>
+      )}
+    </div>
+  </article>
+  <ProductEditorial relatedProducts={relatedProducts} />
+</BaseLayout>

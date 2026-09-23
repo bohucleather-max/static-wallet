@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactLinks from "../components/ui/ContactLinks.astro";
+import { withBase } from "../lib/urls";
+---
+
+<BaseLayout title="How to Order — BOHUC" description="Choose a BOHUC piece and contact the seller directly to order.">
+  <header class="order-friendly-hero">
+    <div class="page-width order-friendly-hero__grid">
+      <div class="order-friendly-hero__copy">
+        <p class="eyebrow">HOW TO ORDER</p>
+        <h1>Ordering,<br />made simple.</h1>
+        <p>There is no cart or account to create. Choose the piece you love, then speak directly with the seller to confirm every detail.</p>
+        <div class="order-friendly-hero__actions">
+          <a class="button order-friendly-hero__primary" href={withBase("collections/")}>Browse products</a>
+          <a class="button button--outline" href="#order-contact">Contact the studio</a>
+        </div>
+      </div>
+      <aside class="order-quick-facts" aria-label="Order information">
+        <p class="order-quick-facts__title">Before you begin</p>
+        <ul>
+          <li><span>01</span><strong>No online checkout</strong><small>Order directly with the seller.</small></li>
+          <li><span>02</span><strong>Prices in USD</strong><small>The final total is confirmed with you.</small></li>
+          <li><span>03</span><strong>Made with care</strong><small>Timing is agreed before work begins.</small></li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <section class="order-guide" aria-labelledby="order-process-title">
+    <div class="page-width">
+      <div class="order-guide__heading" data-reveal>
+        <p class="eyebrow">A CLEAR, PERSONAL PROCESS</p>
+        <h2 id="order-process-title">Four steps from selection to delivery.</h2>
+        <p>We keep the process straightforward and stay in touch along the way.</p>
+      </div>
+      <ol class="order-guide__steps">
+        <li class="order-guide__step" data-reveal>
+          <div class="order-guide__step-head"><span>01</span><small>YOU DO</small></div>
+          <h3>Choose your piece.</h3>
+          <p>Browse the collection and note the product name and leather styles you prefer.</p>
+          <p class="order-guide__hint">You need: product name</p>
+        </li>
+        <li class="order-guide__step" data-reveal>
+          <div class="order-guide__step-head"><span>02</span><small>YOU DO</small></div>
+          <h3>Tell us what you need.</h3>
+          <p>Email the studio with your choice, any questions, and your delivery country.</p>
+          <p class="order-guide__hint">Takes about two minutes</p>
+        </li>
+        <li class="order-guide__step" data-reveal>
+          <div class="order-guide__step-head"><span>03</span><small>WE DO</small></div>
+          <h3>We confirm everything.</h3>
+          <p>You receive availability, material, final USD price, timing, delivery, and payment details.</p>
+          <p class="order-guide__hint">Nothing starts without your approval</p>
+        </li>
+        <li class="order-guide__step" data-reveal>
+          <div class="order-guide__step-head"><span>04</span><small>WE DO</small></div>
+          <h3>We make and send it.</h3>
+          <p>Your piece enters the studio schedule. We keep you updated until it is ready to send.</p>
+          <p class="order-guide__hint">Handmade in small batches</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="order-help" id="order-contact" data-reveal>
+    <div class="page-width order-help__grid">
+      <div class="order-help__copy">
+        <p class="eyebrow">READY WHEN YOU ARE</p>
+        <h2>Start with a simple email.</h2>
+        <p>Not sure which style to choose? That is completely fine. Send the product name and your questions—we will help with the rest.</p>
+      </div>
+      <div class="order-help__action">
+        <p class="order-help__label">EMAIL SHIN LEATHER GOODS</p>
+        <ContactLinks />
+        <small>Clicking the address opens your email application.</small>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,34 @@
+{
+  "slug": "new-orleans",
+  "name": "New Orleans",
+  "status": "active",
+  "featured": false,
+  "categorySlugs": [
+    "south"
+  ],
+  "summary": "Layered streets and character in graphic monochrome.",
+  "description": [
+    "The New Orleans edition is presented as a carefully composed studio piece with crisp detail and a considered palette.",
+    "Printed and finished in small batches. This fixture content comes from the supplied visual mock and should be replaced with the final BOHUC product copy."
+  ],
+  "price": {
+    "amount": 4800,
+    "currency": "USD",
+    "compareAtAmount": null
+  },
+  "images": [
+    {
+      "src": "images/products/new-orleans/cover.jpg",
+      "alt": "New Orleans product artwork in white on charcoal",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "styles": [
+    "*"
+  ],
+  "seo": {
+    "title": "New Orleans — BOHUC",
+    "description": "Discover the New Orleans piece from the BOHUC south collection."
+  }
+}

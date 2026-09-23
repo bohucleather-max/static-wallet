@@ -1,0 +1,36 @@
+---
+import site from "../../data/site.json";
+import { withBase } from "../../lib/urls";
+---
+
+<footer class="site-footer">
+  <div class="page-width site-footer__grid">
+    <nav aria-label="Footer navigation">
+      <p class="footer-heading">Browse</p>
+      <a href={withBase("collections/")}>All product</a>
+      <a href={withBase("collections/north/")}>North</a>
+      <a href={withBase("collections/east/")}>East</a>
+      <a href={withBase("collections/south/")}>South</a>
+      <a href={withBase("collections/west/")}>West</a>
+    </nav>
+    <nav aria-label="Help navigation">
+      <p class="footer-heading">Help</p>
+      <a href={withBase("how-to-order/")}>How to order</a>
+      <a href={withBase("contact/")}>Contact us</a>
+    </nav>
+    <nav aria-label="About navigation">
+      <p class="footer-heading">About this store</p>
+      <a href={withBase("about/")}>About</a>
+      <a href={withBase("how-its-made/")}>How it's made</a>
+      <p>{site.brand.tagline}</p>
+    </nav>
+    <div class="site-footer__brand">
+      <a class="wordmark wordmark--footer" href={withBase()}>{site.brand.name}</a>
+      <a href={withBase("contact/")}>Contact</a>
+    </div>
+  </div>
+  <div class="page-width site-footer__bottom">
+    <small>© {new Date().getFullYear()} BOHUC</small>
+    <small>STATIC CATALOG · USD</small>
+  </div>
+</footer>

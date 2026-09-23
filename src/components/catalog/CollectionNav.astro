@@ -1,0 +1,21 @@
+---
+import { withBase } from "../../lib/urls";
+
+interface Props { current?: string; }
+const { current = "all" } = Astro.props;
+const items = [
+  { slug: "all", label: "ALL PRODUCT", href: "collections/" },
+  { slug: "north", label: "NORTH", href: "collections/north/" },
+  { slug: "east", label: "EAST", href: "collections/east/" },
+  { slug: "south", label: "SOUTH", href: "collections/south/" },
+  { slug: "west", label: "WEST", href: "collections/west/" },
+];
+---
+
+<nav aria-label="Browse collections">
+  <ul class="collection-nav">
+    {items.map((item) => (
+      <li><a href={withBase(item.href)} aria-current={item.slug === current ? "page" : undefined}>{item.label}</a></li>
+    ))}
+  </ul>
+</nav>

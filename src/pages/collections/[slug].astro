@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CollectionNav from "../../components/catalog/CollectionNav.astro";
+import ProductGrid from "../../components/catalog/ProductGrid.astro";
+import { getActiveProducts, getCategories, productsInCategory, type Category, type Product } from "../../lib/catalog";
+import { withBase } from "../../lib/urls";
+
+interface Props { category: Category; products: Product[]; }
+
+export async function getStaticPaths() {
+  const [categories, products] = await Promise.all([getCategories(), getActiveProducts()]);
+  return categories.map((category) => ({
+    params: { slug: category.data.slug },
+    props: { category, products: productsInCategory(products, category.data.slug) },
+  }));
+}
+
+const { category, products } = Astro.props;
+---
+
+<BaseLayout title={category.data.seo.title} description={category.data.seo.description} image={withBase(category.data.image.src)}>
+  <header class="page-intro page-intro--color">
+    <div class="page-width">
+      <p class="eyebrow">{category.data.eyebrow}</p>
+      <h1>{category.data.name}</h1>
+      <p>{category.data.description}</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="page-width">
+      <CollectionNav current={category.data.slug} />
+      <ProductGrid products={products} />
+    </div>
+  </section>
+</BaseLayout>
