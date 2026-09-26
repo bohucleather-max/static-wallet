@@ -3,7 +3,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import LeatherStyles from "../../components/catalog/LeatherStyles.astro";
 import ProductGallery from "../../components/catalog/ProductGallery.astro";
 import ProductEditorial from "../../components/catalog/ProductEditorial.astro";
-import ProductSlider from "../../components/catalog/ProductSlider.astro";
 import { formatPrice } from "../../lib/format";
 import { getActiveProducts, getProductLeathers, type Product } from "../../lib/catalog";
 import { withBase } from "../../lib/urls";
@@ -68,12 +67,6 @@ const structuredData = [
         </section>
         <section aria-labelledby="style-heading"><LeatherStyles leathers={productLeathers} /></section>
       </div>
-      {relatedProducts.length > 0 && (
-        <section class="product-complementary" aria-labelledby="build-collection-heading">
-          <h2 id="build-collection-heading">Build your collection</h2>
-          <ProductSlider products={relatedProducts.slice(0, 4)} label="Build your collection" />
-        </section>
-      )}
     </div>
   </article>
   <ProductEditorial relatedProducts={relatedProducts} />
