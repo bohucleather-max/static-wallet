@@ -78,4 +78,4 @@ The GitHub Pages workflow sets `REQUIRE_CONTACTS=true`, so production deployment
 
 ## Fixture content
 
-The initial product names, copy, and selected images are fixtures derived from the supplied Shopify visual mock. Replace them with approved BOHUC catalog data and licensed assets before public launch. The `mock/` directory is reference material and is not bundled into the site.
+The initial product names, copy, and selected images are legacy fixtures. Replace them with approved BOHUC catalog data and licensed assets before public launch. The archived Shopify snapshot has been removed and is not a project dependency.

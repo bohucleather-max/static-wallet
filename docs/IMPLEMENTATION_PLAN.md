@@ -11,12 +11,12 @@ Lý do chọn Astro:
 - Content collections có thể đọc các file JSON riêng lẻ và kiểm tra schema ngay lúc build.
 - Không cần database hoặc server runtime, nhưng vẫn giữ cấu trúc component dễ bảo trì.
 
-Không dùng lại Shopify runtime trong `mock/`. Mock chỉ là nguồn tham chiếu UI/UX và content được chọn lọc. Các script checkout, analytics, account, API và asset CDN của Shopify phải được loại bỏ.
+Không đưa Shopify runtime hoặc archived demo assets trở lại dự án. Component, CSS, JSON và production assets hiện tại là nguồn chuẩn để bảo trì.
 
 ## 2. Hiện trạng và baseline đã xác minh
 
-- Trạng thái ban đầu của repository chỉ có thư mục `mock/`; application Astro, catalog fixtures và workflow Pages hiện đã được scaffold theo kế hoạch này.
-- `mock/` khoảng 1.4 GB, trong đó phần lớn là bản sao asset Shopify: hơn 8.400 file JPG và khoảng 1.2 GB trong `mock/cdn/shop/products`.
+- Legacy Shopify snapshot đã được xóa khỏi workspace sau khi hoàn tất migration.
+- Các thay đổi UI tiếp theo phải dựa trên production code/assets hoặc evidence mới do người dùng cung cấp.
 - Mock là theme “Creative Theme Cyan” với dữ liệu demo tranh bản đồ thành phố, không phải catalog ví. Chỉ tái tạo visual/layout phù hợp, không mặc định migrate dữ liệu sản phẩm demo.
 - GitHub Pages chỉ host file tĩnh. Website này chỉ giới thiệu sản phẩm; việc đặt hàng diễn ra qua email hoặc ứng dụng nhắn tin của seller.
 - Catalog hiện dùng fixture được chọn lọc từ mock. Production deploy được khóa cho đến khi `src/data/site.json` có ít nhất một contact thật của seller.
@@ -150,12 +150,12 @@ Schema build-time phải kiểm tra ít nhất:
 ### MVP
 
 - Responsive header/navigation, footer và announcement bar; logo là wordmark chữ `BOHUC` được tạo bằng HTML/CSS phù hợp theme.
-- Menu chính theo đúng thứ tự: `HOME`, `COLLECTION`, `HOW IT'S MADE`, `ABOUT`, `HOW TO ORDER`, `CONTACT`.
+- Menu chính theo đúng thứ tự: `HOME`, `COLLECTION`, `WORKS`, `ABOUT`, `HOW TO ORDER`, `CONTACT`.
 - Menu `COLLECTION` có đúng năm item: `ALL PRODUCT`, `NORTH`, `EAST`, `SOUTH`, `WEST`.
 - Home page dựa trên visual language của mock.
 - Trang All Product và bốn collection; desktop hiển thị bốn product card trên một hàng và giảm cột responsive trên màn hình nhỏ.
 - Product detail chỉ hiển thị ảnh, thông tin sản phẩm, giá nếu có, phần `Product Detail` và `Style`. Không có variant selector, accordion đóng/mở, zoom bắt buộc hoặc nút mua hàng.
-- Các trang `How It's Made`, `About`, `How To Order`, `Contact` và trang 404.
+- Các trang `Works`, `About`, `How To Order`, `Contact` và trang 404.
 - Contact hiển thị icon cho các kênh được cấu hình như email, Messenger và các ứng dụng chat khác; click icon mở thẳng cuộc trò chuyện hoặc ứng dụng tương ứng.
 - SEO metadata, canonical URL, Open Graph, JSON-LD Product/Breadcrumb.
 - Deploy GitHub Pages tự động từ branch `main`.

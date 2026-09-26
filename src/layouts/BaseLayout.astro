@@ -28,9 +28,9 @@ const isHome = Astro.url.pathname === new URL(import.meta.env.BASE_URL, Astro.si
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#00a8c9" />
+    <meta name="theme-color" content="#b8ab97" />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23245f64%22/><text x=%2250%22 y=%2267%22 font-size=%2254%22 text-anchor=%22middle%22 fill=%22%23f8f3e3%22>B</text></svg>`} />
+    <link rel="icon" href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23b8ab97%22/><text x=%2250%22 y=%2267%22 font-size=%2254%22 text-anchor=%22middle%22 fill=%22%233f372f%22>B</text></svg>`} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -45,7 +45,7 @@ const isHome = Astro.url.pathname === new URL(import.meta.env.BASE_URL, Astro.si
     <div class="announcement">{site.announcement}</div>
     <Header />
     <main id="main-content"><slot /></main>
-    <Footer />
+    {!isHome && <Footer />}
     <script>
       const revealItems = document.querySelectorAll<HTMLElement>("[data-reveal]");
       if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

@@ -89,6 +89,9 @@ const slides = [
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let current = 0;
     let timer: number | undefined;
+    let wheelReleaseTimer: number | undefined;
+    let wheelDistance = 0;
+    let wheelLocked = false;
 
     const show = (next: number) => {
       current = (next + slides.length) % slides.length;
@@ -114,6 +117,31 @@ const slides = [
     };
 
     dots.forEach((dot, index) => dot.addEventListener("click", () => { show(index); start(); }));
+    slider.addEventListener("wheel", (event) => {
+      if (event.ctrlKey || slides.length < 2 || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+
+      event.preventDefault();
+      window.clearTimeout(wheelReleaseTimer);
+      wheelReleaseTimer = window.setTimeout(() => {
+        wheelDistance = 0;
+        wheelLocked = false;
+      }, 240);
+
+      if (wheelLocked) return;
+
+      const deltaMultiplier = event.deltaMode === event.DOM_DELTA_LINE
+        ? 16
+        : event.deltaMode === event.DOM_DELTA_PAGE
+          ? slider.clientHeight
+          : 1;
+      wheelDistance += event.deltaY * deltaMultiplier;
+
+      if (Math.abs(wheelDistance) < 48) return;
+
+      wheelLocked = true;
+      show(current + (wheelDistance > 0 ? 1 : -1));
+      start();
+    }, { passive: false });
     slider.addEventListener("mouseenter", stop);
     slider.addEventListener("mouseleave", start);
     slider.addEventListener("focusin", stop);

@@ -9,9 +9,9 @@ Use the sections relevant to the current change. Run broader checks before decla
 - `site` and `base` work for local root and GitHub Pages project path.
 - Layout, navigation, footer, typography, colors, spacing, focus styles, and reduced-motion behavior are reusable.
 - The logo is the accessible text wordmark `BOHUC`.
-- Navigation has the required six top-level items and exactly five collection entries in the specified order.
+- Navigation has the required six top-level items, including `WORKS`, and exactly five collection entries in the specified order.
 - No cart or user/login icon is present.
-- No Shopify runtime or unused mock dependency enters the application bundle.
+- No Shopify runtime or archived demo dependency enters the application bundle.
 
 ## Catalog
 
@@ -24,7 +24,7 @@ Use the sections relevant to the current change. Run broader checks before decla
 
 ## Pages and presentation
 
-- Home, All Product, four collection, product, How It's Made, About, How To Order, Contact, and 404 routes cover the agreed scope.
+- Home, All Product, four collection, product, Works, About, How To Order, Contact, and 404 routes cover the agreed scope.
 - Collection pages show four product cards per row on desktop and reduce columns responsively.
 - Product pages expose only product information/media plus always-visible Product Detail and Style content.
 - No add-to-cart, checkout, login, variant selector, fake clickable option, or collapsible detail/style control is rendered.

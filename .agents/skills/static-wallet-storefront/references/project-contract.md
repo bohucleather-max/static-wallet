@@ -6,11 +6,11 @@
 - Output: static files only; no SSR adapter or database.
 - Hosting: GitHub Pages through GitHub Actions.
 - Source of truth: one JSON file per product/category.
-- Mock role: visual/layout reference only.
+- Legacy mock: removed from the workspace; production code and assets are the maintained source of truth.
 - Commerce mode: display-only catalog with direct seller contact; no cart, checkout, payment, or account system.
 - Display currency: USD only, shown with the `$` symbol.
 
-The initial `mock/` snapshot is about 1.4 GB and is a Shopify demo for city-map artwork. It includes large volumes of duplicate image derivatives and Shopify runtime assets. Do not mistake that content for the wallet catalog.
+The legacy Shopify snapshot is no longer stored in this repository. Do not assume that archived HTML, scripts, or image derivatives are available. Use current production components and explicit user-provided evidence for future visual changes.
 
 ## Required structure
 
@@ -33,7 +33,7 @@ The desktop and mobile navigation must use this order:
 
 1. `HOME`
 2. `COLLECTION`
-3. `HOW IT'S MADE`
+3. `WORKS`
 4. `ABOUT`
 5. `HOW TO ORDER`
 6. `CONTACT`
@@ -89,4 +89,4 @@ Centralize these destinations, validate their schemes, open external web destina
 
 Select only assets actually used by the finished pages. Prefer stable descriptive filenames and modern web formats. Keep an original only when it has a documented production purpose. Generate responsive derivatives deliberately rather than retaining Shopify's many query/download variants.
 
-Check font and image usage rights before publishing mock-derived files.
+Check font and image usage rights before publishing user-provided or legacy-derived files.
